@@ -1,28 +1,22 @@
 const countryName = new URLSearchParams(location.search).get("name");
-console.log("Country Name:", countryName); // Add this line to check the countryName
-
+const flagImage = document.querySelector(".country-details img");
 const countryNameH1 = document.querySelector(".country-details h1");
+const nativeName = document.querySelector(".native-name");
+const population = document.querySelector(".population");
+const region = document.querySelector(".region");
+const subRegion = document.querySelector(".sub-region");
+const capital = document.querySelector(".capital");
+const topLevelDomain = document.querySelector(".top-level-domain");
+const currencies = document.querySelector(".currencies");
+const languages = document.querySelector(".languages");
+const borderCountries = document.querySelector(".border-countries");
 
 fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
   .then((res) => res.json())
   .then(([country]) => {
-    // Set country name dynamically
-    countryNameH1.innerText = country.name.common;
-
-    const flagImage = document.querySelector(".country-details img");
-    const nativeName = document.querySelector(".native-name");
-    const population = document.querySelector(".population");
-    const region = document.querySelector(".region");
-    const subRegion = document.querySelector(".sub-region");
-    const capital = document.querySelector(".capital");
-    const topLevelDomain = document.querySelector(".top-level-domain");
-    const currencies = document.querySelector(".currencies");
-    const languages = document.querySelector(".languages");
-    const borderCountries = document.querySelector(".border-countries");
-
-    // Populate other country details
     flagImage.src = country.flags.svg;
-    population.innerText = country.population.toLocaleString("en-GB");
+    countryNameH1.innerText = country.name.common;
+    population.innerText = country.population.toLocaleString("en-IN");
     region.innerText = country.region;
     topLevelDomain.innerText = country.tld.join(", ");
 
